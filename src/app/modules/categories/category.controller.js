@@ -1,4 +1,5 @@
 const business = require('./category.business')
+const logger = require("../../../../logger")
 
 //Controller: recebe os dados da rota e redireciona pra camada de negócios (business)
 class clsCategories {
@@ -13,10 +14,13 @@ class clsCategories {
 
             let categoryCreated = await business.createCategory(category)
 
+            logger.info(`Categoria criada: ${categoryCreated}`)
+
             return res.status(201).json(categoryCreated)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -32,10 +36,13 @@ class clsCategories {
 
             let categoryEdited = await business.editCategory(categoryId, category)
 
+            logger.info(`Categoria editada: ${categoryEdited}`)
+
             return res.status(200).json(categoryEdited)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -50,10 +57,13 @@ class clsCategories {
 
             let categoryDeleted = await business.deleteCategory(categoryId)
 
+            logger.info(`Categoria excluída: ${categoryDeleted}`)
+
             return res.status(200).json(categoryDeleted)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -68,6 +78,7 @@ class clsCategories {
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }

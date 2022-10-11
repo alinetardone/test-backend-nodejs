@@ -1,4 +1,5 @@
 const business = require('./product.business')
+const logger = require("../../../../logger")
 
 //Controller: recebe os dados da rota e redireciona pra camada de negócios (business)
 class clsProducts {
@@ -13,10 +14,13 @@ class clsProducts {
 
             let productCreated = await business.createProduct(product)
 
+            logger.info(`Produto criado: ${productCreated}`)
+            
             return res.status(201).json(productCreated)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -32,10 +36,13 @@ class clsProducts {
 
             let productEdited = await business.editProduct(productId, product)
 
+            logger.info(`Produto editado: ${productEdited}`)
+
             return res.status(200).json(productEdited)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -50,10 +57,13 @@ class clsProducts {
 
             let productDeleted = await business.deleteProduct(productId)
 
+            logger.info(`Produto excluído: ${productDeleted}`)
+
             return res.status(200).json(productDeleted)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -70,6 +80,7 @@ class clsProducts {
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }

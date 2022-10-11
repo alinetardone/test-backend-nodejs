@@ -1,5 +1,5 @@
 const business = require('./catalog.business')
-
+const logger = require("../../../../logger")
 //Controller: recebe os dados da rota e redireciona pra camada de negócios (business)
 class clsCatalogs {
 
@@ -13,11 +13,13 @@ class clsCatalogs {
             if (!userId || !productIds) return res.status(400).send("Parâmetros não enviados.")
 
             let catalogCreated = await business.createCatalog(userId, productIds)
-
+            
+            logger.info(`Catálogo criado: ${catalogCreated}`)
             return res.status(201).json(catalogCreated)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -33,10 +35,13 @@ class clsCatalogs {
 
             let catalogEdited = await business.editCatalog(catalogId, catalog)
 
+            logger.info(`Catálogo editado: ${catalogEdited}`)
+
             return res.status(200).json(catalogEdited)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -51,10 +56,13 @@ class clsCatalogs {
 
             let catalogDeleted = await business.deleteCatalog(catalogId)
 
+            logger.info(`Catálogo excluído: ${catalogDeleted}`)
+
             return res.status(200).json(catalogDeleted)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -66,12 +74,15 @@ class clsCatalogs {
 
             if (!catalogId || !productId) return res.status(400).send("Parâmetros não enviados.")
 
-            let catalogDeleted = await business.deleteProductInCatalog(catalogId, productId)
+            let productDeleted = await business.deleteProductInCatalog(catalogId, productId)
 
-            return res.status(200).json(catalogDeleted)
+            logger.info(`Produto do catálogo excluído: ${productDeleted}`)
+
+            return res.status(200).json(productDeleted)
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -86,6 +97,7 @@ class clsCatalogs {
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
@@ -102,6 +114,7 @@ class clsCatalogs {
 
         } catch (error) {
 
+            logger.error(error)
             return res.status(error.code ?? 500).send(error.message)
         }
     }
