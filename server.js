@@ -37,11 +37,10 @@ class App {
     const server = app.listen(port, () => {
       console.log(`|== Aplicação rodando na porta ${port} ==|`)
     })
-    
     //Finaliza a aplicação
     process.on('SIGINT', () => {
       server.close()
-      console.log("|== Aplicação finalizada (｡･∀･)ﾉ ==|")
+      console.log("|== Aplicação finalizada ==|")
     });
   }
 

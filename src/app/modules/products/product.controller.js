@@ -84,6 +84,22 @@ class clsProducts {
             return res.status(error.code ?? 500).send(error.message)
         }
     }
+    static async getProductById(req, res) {
+
+        try {
+
+            let {productId} = req.params
+
+            let product = await business.getProductById(productId)
+
+            return res.status(200).json(product)
+
+        } catch (error) {
+
+            logger.error(error)
+            return res.status(error.code ?? 500).send(error.message)
+        }
+    }
 }
 
 module.exports = clsProducts

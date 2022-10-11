@@ -19,3 +19,8 @@ exports.find = async (filter) => {
 
     return await productsSchema.find(filter).populate('categoryId')
 }
+
+exports.findOne = async (filter) => {
+
+    return await productsSchema.findOne(filter).populate('categoryId')
+}

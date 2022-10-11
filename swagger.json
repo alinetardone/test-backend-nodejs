@@ -160,6 +160,30 @@
                         "description": "Ok"
                     }
                 }
+            },
+            "get": {
+                "summary": "Listagem de produto por Id",
+                "description": "Rota responsável por listar um produto pelo Id.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "example": "634419bd09f7fedb7ac7216d",
+                        "in": "path",
+                        "description": "Id do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Um erro ocorreu internamente"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
             }
         },
         "/categories": {

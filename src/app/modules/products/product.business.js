@@ -89,3 +89,21 @@ exports.getProducts = async (queries) => {
         throw error
     }
 }
+exports.getProductById = async (productId) => {
+
+    try {
+
+        const product = await repositories.findOne({productId})
+
+        if (!product) {
+
+            throw errors.notFound(`Nenhum produto foi encontrado`)
+        }
+
+        return product
+
+    } catch (error) {
+
+        throw error
+    }
+}
