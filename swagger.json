@@ -16,7 +16,7 @@
         "/products": {
             "post": {
                 "summary": "Cadastro de produtos",
-                "description": "O usuário poderá registrar um produto e futuramente ter acesso aos seus dados.",
+                "description": "Rota responsável por registrar um novo produto. Espera-se um body contendo os dados do produto.",
                 "tags": [
                     "Produtos"
                 ],
@@ -55,7 +55,7 @@
             },
             "get": {
                 "summary": "Listagem de produtos",
-                "description": "Rota responsável por listar os produtos cadastrados no sistema.",
+                "description": "Rota responsável por listar os produtos cadastrados no sistema. Para filtro, enviar por query o nome ou categoria do produto.",
                 "tags": [
                     "Produtos"
                 ],
@@ -91,7 +91,7 @@
         "/products/{productId}": {
             "put": {
                 "summary": "Edição de produtos",
-                "description": "Rota responsável por editar os dados do produto.",
+                "description": "Rota responsável por editar os dados de um produto. Espera-se o id do produto pelos parâmetros e um body com a modificação desejada.",
                 "tags": [
                     "Produtos"
                 ],
@@ -139,7 +139,7 @@
             },
             "delete": {
                 "summary": "Exclusão de produtos",
-                "description": "Rota responsável por excluir produtos.",
+                "description": "Rota responsável por excluir um produto. Para exclusão, enviar o id do produto pelos parâmetros.",
                 "tags": [
                     "Produtos"
                 ],
@@ -163,7 +163,7 @@
             },
             "get": {
                 "summary": "Listagem de produto por Id",
-                "description": "Rota responsável por listar um produto pelo Id.",
+                "description": "Rota responsável por listar um produto pelo Id. Espera-se o id do produto desejado por parâmetro.",
                 "tags": [
                     "Produtos"
                 ],
@@ -189,7 +189,7 @@
         "/categories": {
             "post": {
                 "summary": "Cadastro de categorias",
-                "description": "Rota responsável por salvar as categorias do produto.",
+                "description": "Rota responsável por registrar a categoria de um produto. Espera-se um body contendo os dados da categoria.",
                 "tags": [
                     "Categorias"
                 ],
@@ -225,7 +225,7 @@
             },
             "get": {
                 "summary": "Listagem de categorias",
-                "description": "Rota responsável por listar as categorias do sistema.",
+                "description": "Rota responsável por listar as categorias do sistema. Não há parâmetros.",
                 "tags": [
                     "Categorias"
                 ],
@@ -245,7 +245,7 @@
         "/categories/{categoryId}": {
             "put": {
                 "summary": "Edição de categorias",
-                "description": "Rota responsável por editar a categoria.",
+                "description": "Rota responsável por editar uma categoria. Espera-se o id da categoria pelos parâmetros e um body com a modificação desejada. ",
                 "tags": [
                     "Categorias"
                 ],
@@ -290,7 +290,7 @@
             },
             "delete": {
                 "summary": "Exclusão de categoria",
-                "description": "Rota responsável por excluir uma categoria.",
+                "description": "Rota responsável por excluir uma categoria. Enviar o id da categoria a ser excluída por parâmetro.",
                 "tags": [
                     "Categorias"
                 ],
@@ -316,7 +316,7 @@
         "/catalogs/user/{userId}": {
             "post": {
                 "summary": "Cadastro de catálogos",
-                "description": "Rota responsável por salvar os catálogos do sistema.",
+                "description": "Rota responsável por salvar os catálogos do sistema. Espera-se o id do usuário que deseja criar o catálogo e um body contendo as informações.",
                 "tags": [
                     "Catálogos"
                 ],
@@ -362,7 +362,7 @@
             },
             "get": {
                 "summary": "Listagem de catálogo por usuário",
-                "description": "Rota responsável por listar o catálogo de cada cliente.",
+                "description": "Rota responsável por listar o catálogo de cada cliente. Espera-se o id do usuário nos parâmetros.",
                 "tags": [
                     "Catálogos"
                 ],
@@ -391,7 +391,7 @@
         "/catalogs": {
             "get": {
                 "summary": "Listagem de catálogos",
-                "description": "Rota responsável por listar os catálogos do sistema.",
+                "description": "Rota responsável por listar os catálogos do sistema. Não há parâmetros.",
                 "tags": [
                     "Catálogos"
                 ],
@@ -411,7 +411,7 @@
         "/catalogs/{catalogId}": {
             "put": {
                 "summary": "Edição de catálogos",
-                "description": "Rota responsável por editar os catálogos.",
+                "description": "Rota responsável por editar os catálogos. Espera-se o id do catálogo pelos parâmetros e um body com a modificação desejada.",
                 "tags": [
                     "Catálogos"
                 ],
@@ -460,7 +460,7 @@
             },
             "delete": {
                 "summary": "Exclusão de catálogo",
-                "description": "Rota responsável por excluir um catálogo do sistema.",
+                "description": "Rota responsável por excluir um catálogo do sistema. Para exclusão, enviar o id do catálogo pelos parâmetros",
                 "tags": [
                     "Catálogos"
                 ],
@@ -486,7 +486,7 @@
         "/catalogs/{catalogId}/product/{productId}":{
             "delete": {
                 "summary": "Exclusão de produto do catálogo",
-                "description": "Rota responsável por excluir um produto registrado em um catálogo.",
+                "description": "Rota responsável por excluir um produto registrado em um catálogo. Espera-se o id do catálogo e do produto a ser excluído nos parâmetros.",
                 "tags": [
                     "Catálogos"
                 ],
