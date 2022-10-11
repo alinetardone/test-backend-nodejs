@@ -13,7 +13,7 @@
   As rotas disponíveis podem ser encontradas acessando: `localhost:3000/api-docs`  
 
 
-<strong><h3>Qual a interpretação das User Stories?<h3></strong>
+<strong><h3>Qual a interpretação das User Stories?</h3></strong>
 
   Com base nas histórias de usuários, foram criadas três tabelas, onde:
 ![Tabelas](src/app/assets/images/tables.png)
