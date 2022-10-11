@@ -1,0 +1,545 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API TEST-BAKEND-NODEJS - Anota Ai!",
+        "description": "API desenvolvida por: Aline Tardone de Souza (. ❛ ᴗ ❛.)",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+    
+        "/products": {
+            "post": {
+                "summary": "Cadastro de produtos",
+                "description": "O usuário poderá registrar um produto e futuramente ter acesso aos seus dados.",
+                "tags": [
+                    "Produtos"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Products"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "product": {
+                                            "title": "Camiseta",
+                                            "description": "Camiseta de super herói",
+                                            "price": 59.99,
+                                            "categoryId": "634472cfa5f8b0c1b2b64635"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de produtos",
+                "description": "Rota responsável por listar os produtos cadastrados no sistema.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "example": "Camiseta",
+                        "description": "Título do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "example": "vestimentas",
+                        "description": "Categoria do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            }
+        },
+        "/products/{productId}": {
+            "put": {
+                "summary": "Edição de produtos",
+                "description": "Rota responsável por editar os dados do produto.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "example": "634419bd09f7fedb7ac7216d",
+                        "description": "Id do produto",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Products"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "product": {
+                                            "title": "Camiseta",
+                                            "description": "Camiseta de super herói",
+                                            "price": 29.99,
+                                            "categoryId": "634472cfa5f8b0c1b2b64635"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Dados não encontrados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Exclusão de produtos",
+                "description": "Rota responsável por excluir produtos.",
+                "tags": [
+                    "Produtos"
+                ],
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "example": "634419bd09f7fedb7ac7216d",
+                        "in": "path",
+                        "description": "Id do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Um erro ocorreu internamente"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "post": {
+                "summary": "Cadastro de categorias",
+                "description": "Rota responsável por salvar as categorias do produto.",
+                "tags": [
+                    "Categorias"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Categories"
+                            },
+                            "examples": {
+                                "category": {
+                                    "value": {
+                                        "category": {
+                                            "description": "Vestimentas"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de categorias",
+                "description": "Rota responsável por listar as categorias do sistema.",
+                "tags": [
+                    "Categorias"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            }
+        },
+        "/categories/{categoryId}": {
+            "put": {
+                "summary": "Edição de categorias",
+                "description": "Rota responsável por editar a categoria.",
+                "tags": [
+                    "Categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "example": "634472c9a5f8b0c1b2b64633",
+                        "description": "Id da categoria (ObjectId)",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Categories"
+                            },
+                            "examples": {
+                                "category": {
+                                    "value": {
+                                        "category": {
+                                            "description": "Vestiário"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Dados não encontrados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Exclusão de categoria",
+                "description": "Rota responsável por excluir uma categoria.",
+                "tags": [
+                    "Categorias"
+                ],
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "example": "634472c9a5f8b0c1b2b64633",
+                        "in": "path",
+                        "description": "Id da categoria (ObjectId)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Um erro ocorreu internamente"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/catalogs/user/{userId}": {
+            "post": {
+                "summary": "Cadastro de catálogos",
+                "description": "Rota responsável por salvar os catálogos do sistema.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "example": 1,
+                        "description": "Id do usuário",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Catalogs"
+                            },
+                            "examples": {
+                                "catalogs": {
+                                    "value": {
+                                        "productIds": [
+                                            "63441babfc29468617d55de9",
+                                            "63441cec68852c4627ddd908"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de catálogo por usuário",
+                "description": "Rota responsável por listar o catálogo de cada cliente.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "example": 1,
+                        "description": "Id do usuário",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            }
+        },
+        "/catalogs": {
+            "get": {
+                "summary": "Listagem de catálogos",
+                "description": "Rota responsável por listar os catálogos do sistema.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Parâmetros não enviados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu internamente."
+                    },
+                    "201": {
+                        "description": "Criado"
+                    }
+                }
+            }
+        },
+        "/catalogs/{catalogId}": {
+            "put": {
+                "summary": "Edição de catálogos",
+                "description": "Rota responsável por editar os catálogos.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "parameters": [
+                    {
+                        "name": "catalogId",
+                        "in": "path",
+                        "example": "634472c9a5f8b0c1b2b64633",
+                        "description": "Id do catálogo (ObjectId)",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Catalogs"
+                            },
+                            "examples": {
+                                "catalog": {
+                                    "value": {
+                                        "catalog": {
+                                            "userId": 1,
+                                            "productIds": [
+                                                "63441babfc29468617d55de9",
+                                                "63441cec68852c4627aaa222"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Dados não encontrados."
+                    },
+                    "500": {
+                        "description": "Um erro ocorreu"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Exclusão de catálogo",
+                "description": "Rota responsável por excluir um catálogo do sistema.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "parameters": [
+                    {
+                        "name": "catalogId",
+                        "example": "634472c9a5f8b0c1b2b64633",
+                        "in": "path",
+                        "description": "Id do catálogo (ObjectId)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Um erro ocorreu internamente"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/catalogs/{catalogId}/product/{productId}":{
+            "delete": {
+                "summary": "Exclusão de produto do catálogo",
+                "description": "Rota responsável por excluir um produto registrado em um catálogo.",
+                "tags": [
+                    "Catálogos"
+                ],
+                "parameters": [
+                    {
+                        "name": "catalogId",
+                        "example": "634458874a4d260c362132ae",
+                        "in": "path",
+                        "description": "Id do catálogo (ObjectId)",
+                        "required": true
+                    },
+                    {
+                        "name": "productId",
+                        "example": "63441cec68852c4627ddd908",
+                        "in": "path",
+                        "description": "Id do produto (ObjectId)",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Um erro ocorreu internamente"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Products": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "ObjectId"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "categoryId": {
+                        "type": "number"
+                    }
+                }
+            },
+            "Categories": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "ObjectId"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Catalogs": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "ObjectId"
+                    },
+                    "userId": {
+                        "type": "number"
+                    },
+                    "productIds": {
+                        "type": "array"
+                    }
+                }
+            }
+        }
+    }
+}
